@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <body>
+        <div class="container" style="padding:1em;font-family: sans-serif">
+
+            <button id="initialize-btn">Load Data</button>
+            <ul id="ul1"></ul>
+
+            <form>
+                <div><input id="name-input" placeholder="Enter new name here"></div>
+                <div><span style="display: inline-block; width: 20em;margin-top: 10px;">Manipulate the individual DOM elements </span>
+                    <button id="btn-a1">Add Name</button>
+                    <button id="btn-a2">Remove First</button>
+                    <button id="btn-a3">Remove Last</button>
+                </div>
+                <div style="margin-top: 1em;"><span style="display: inline-block; width: 20em;">Manipulate the Array and re-render the UL</span>
+                    <button id="btn-b1">Add Name</button>
+                    <button id="btn-b2">Remove First</button>
+                    <button id="btn-b3">Remove Last</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            //Will eventually (day 4) come from a server-API
+            const names = ["Lars", "Peter", "Jan", "Lise", "Janne"]
+
+            function makeList() {
+                const lis = names.map(n => `<li>${encode(n)}</li>`).join("")
+                document.getElementById("ul1").innerHTML = lis
+            }
+            document.getElementById("initialize-btn").onclick = () => makeList()
+
+
+            /****************************************************************************/
+            /*        Strategy where we are manipulating individual DOM-Elements        */
+            /****************************************************************************/
+
+
+            document.getElementById("btn-a1").onclick = (evt) => {
+                evt.preventDefault()
+
+                const name = document.getElementById("name-input").value
+                const listViewElement = document.createElement("li");
+                listViewElement.appendChild(document.createTextNode(name))
+                const ul = document.getElementById("ul1").appendChild(listViewElement)
+
+                names.push(name)
+
+                console.log(names)
+            }
+
+            document.getElementById("btn-a2").onclick = (evt) => {
+                evt.preventDefault()
+                document.getElementById("ul1").firstChild.remove();
+
+                names.shift()
+
+                console.log(names)
+            }
+
+            document.getElementById("btn-a3").onclick = (evt) => {
+                evt.preventDefault()
+                document.getElementById("ul1").lastChild.remove();
+
+                names.pop()
+
+                console.log(names)
+            }
+
+            /****************************************************************************/
+            /* Strategy where we are manipulating the data, and then re-render the HTML */
+            /****************************************************************************/
+
+            document.getElementById("btn-b1").onclick = (evt) => {
+                evt.preventDefault()
+                const name = document.getElementById("name-input").value
+                names.push(encode(name));
+                makeList();
+            }
+
+            document.getElementById("btn-b2").onclick = (evt) => {
+                evt.preventDefault()
+                names.shift()
+                makeList();
+            }
+
+            document.getElementById("btn-b3").onclick = (evt) => {
+                    evt.preventDefault()
+                    names.pop()
+                    makeList();
+                }
+                //Utility function you can use to escape "untrusted" data inputs
+                //Ref: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+            function encode(str) {
+                str = str.replace(/&/g, "&amp;");
+                str = str.replace(/>/g, "&gt;");
+                str = str.replace(/</g, "&lt;");
+                str = str.replace(/"/g, "&quot;");
+                str = str.replace(/'/g, "&#039;");
+                return str;
+            }
+        </script>
+
+    </body>
+
+</html>
