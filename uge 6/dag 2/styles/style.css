@@ -1,0 +1,14 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 5;
+}
+
+ul li {
+  /* 
+  display block (default) --> Vertical
+  display inline --> Horizontal
+  */
+  display: inline;
+  margin-right: 5px;
+}
