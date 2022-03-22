@@ -12,23 +12,26 @@ function renderMenuItems(evt) {
   renderTemplate(id)  //This setups the HTML for the page
   switch (id) {
     //Here you can execute JavaScript for the selected page
-    case "page-1": {
+    case "about": {
       break
     }
-    case "page-2": {
-      setupP2Handlers()
+    case "show-cars": {
       break
     }
-    case "page-3": {
-      setUpPage3Handlers()
-      getAllUsers()
+    case "add-edit-cars": {
+      break
+    }
+    case "sign-up": {
+      break
+    }
+    case "login": {
       break
     }
   }
 }
 
 document.getElementById("menu").onclick = renderMenuItems;
-showPage("page-1") //Set the default page to render
+showPage("about") //Set the default page to render
 
 
 
