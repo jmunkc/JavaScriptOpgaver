@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<h1>JavaScript Opgaver dag 2</h1>
+
+<body>
+
+    <div id="green-div">Hello</div>
+    <div id="yellow-div">World</div>
+    <div id="red-div">Of Tommorow</div>
+    <br>
+    <button id="color-btn">Apply color</button>
+    <br>
+
+
+</body>
+<script>
+    // DOM manipulation and events
+    // a)
+    const divs = document.querySelectorAll("div");
+    divs.forEach(function(element) {
+        element.style.backgroundColor = "green";
+    })
+
+    // b)
+    document.getElementById("color-btn").onclick = (evt) => {
+        document.getElementById("green-div").style.backgroundColor = "blue";
+        document.getElementById("yellow-div").style.backgroundColor = "yellow";
+        document.getElementById("red-div").style.backgroundColor = "red";
+    }
+
+
+    // Event bubbling and event arguments'
+    // a)
+</script>
+
+</html>
